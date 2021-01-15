@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('JWT', ['except' => ['login','singup']]);
     }
 
     /**
@@ -54,6 +55,11 @@ class AuthController extends Controller
         auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
+    }
+    public function singup(Request $request){
+        $user=User::create($request->all());
+
+        return $this->login($user);
     }
 
     /**
