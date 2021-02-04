@@ -14,12 +14,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Ask Question?</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Category</a>
-                </li>
+
+                <router-link to="/category" >
+                        <li class="nav-item">
+                            <a class="nav-link" >Category</a>
+                        </li>
+                </router-link>
+
+                <router-link to="/login">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Login</a>
                 </li>
+                </router-link>
 
             </ul>
         </div>
