@@ -7,7 +7,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-
+//
+import User from "./Helpers/User"
+window.User = User
 
 /**
  * The following block of code may be used to automatically register your
@@ -28,6 +30,7 @@ Vue.component('app-home', require('./components/AppHome.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import router from './Router/router.js'
+console.log(User.id())
 
 const app = new Vue({
     el: '#app',
