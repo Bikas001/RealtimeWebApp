@@ -17,6 +17,7 @@ class User{
 
         if(Token.isValid(access_token)){
             AppStorage.store(user,access_token)
+            window.location='/forum'
         }
 
     }
@@ -24,7 +25,7 @@ class User{
     hasToken(){
         const token=AppStorage.getToken();
         if(token){
-           return  Token.isValid(token) ? true : false
+           return Token.isValid(token) ? true : false;
         }
         return false
 
@@ -36,6 +37,7 @@ class User{
 
     logout(){
         AppStorage.clear();
+        window.location='/forum'
     }
     name(){
         if(this.loggedIn()){

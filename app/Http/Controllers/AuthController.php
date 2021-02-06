@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\SignupRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -56,7 +57,8 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Successfully logged out']);
     }
-    public function singup(Request $request){
+    public function singup(SignupRequest $request){
+
         $user=User::create($request->all());
 
         return $this->login($user);

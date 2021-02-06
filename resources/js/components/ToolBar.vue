@@ -8,25 +8,15 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+                <router-link v-for="item in items"
+                             :key="item.title"
+                             :to="item.to"
+                             v-if="item.show"
+                >
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Forum <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ask Question?</a>
-                </li>
-
-                <router-link to="/category" >
-                        <li class="nav-item">
-                            <a class="nav-link" >Category</a>
-                        </li>
-                </router-link>
-
-                <router-link to="/login">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="#">{{item.title}}</a>
                 </li>
                 </router-link>
-
             </ul>
         </div>
         </div>
@@ -35,6 +25,23 @@
 
 <script>
 export default {
+    data(){
+        return {
+            items : [
+                {title:'Forum',to:'/forum',show:true},
+                {title: 'Category',to: '/category',show: User.loggedIn()},
+                {title: 'Ask Question ?',to: '/ask',show: User.loggedIn()},
+                {title: 'Login',to: '/login',show: !User.loggedIn()},
+                {title: 'Logout', to: '/logout', show: User.loggedIn()}
+            ]
+        }
+    },
+    created() {
+        EventBus.$on('logout' ,()=>{
+            User.logout()
+        })
+    }
+
 
 }
 </script>
